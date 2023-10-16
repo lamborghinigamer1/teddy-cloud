@@ -1,0 +1,7 @@
+[
+    {
+        "host": "YourHost Example: localhost",
+        "username": "YourSQLUsername",
+        "password": "YourSQLPassword"
+    }
+]
