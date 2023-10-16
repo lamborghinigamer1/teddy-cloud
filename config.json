@@ -1,7 +1,0 @@
-[
-    {
-        "host": "YourHost",
-        "username": "YourSQLUsername",
-        "password": "YourSQLPassword"
-    }
-]
