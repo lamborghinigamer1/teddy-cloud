@@ -3,7 +3,7 @@
 // Check if user is logged in
 session_start();
 
-if (empty($_SESSION['userid']) && $_GET['page'] !== "login" && $_GET['page'] !== "signup" && $_GET !== "logout") {
+if (empty($_SESSION['userid']) && $_GET['page'] !== "login" && $_GET['page'] !== "signup" && $_GET['page'] !== "logout") {
     header("location: /login");
     exit();
 }

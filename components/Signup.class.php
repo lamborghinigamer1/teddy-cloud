@@ -19,6 +19,11 @@ class Signup extends Database
 
         // Check for any empty imput
 
+        $_SESSION['firstname'] = $this->firstname;
+        $_SESSION['lastname'] = $this->lastname;
+        $_SESSION['email'] = $this->email;
+
+
         $errormessages = [];
         if (!$this->emptyInput()) {
             array_push($errormessages, "<p>You did not fill in all information</p>");
@@ -38,6 +43,8 @@ class Signup extends Database
         if (empty($errormessages)) {
             $this->encryptPassword();
             $this->insertUser();
+            header("location: /logout");
+            exit();
         } else {
             foreach ($errormessages as $error) {
                 echo $error;
@@ -55,7 +62,7 @@ class Signup extends Database
     }
     private function passwordRequirement(): bool
     {
-        if (strlen($this->password) <= 8) {
+        if (strlen($this->password) < 8) {
             return false;
         } else {
             return true;

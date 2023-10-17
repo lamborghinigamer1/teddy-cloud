@@ -1,15 +1,15 @@
 <form action="signup" method="post">
     <label for="firstname">First name</label>
     <p></p>
-    <input type="text" name="firstname" required autocomplete="given-name" id="firstname">
+    <input type="text" <?php if (!empty($_SESSION['firstname'])) echo "value='" . $_SESSION['firstname'] . "'"; ?> name="firstname" required autocomplete="given-name" id="firstname">
     <p></p>
     <label for="lastname">Last name</label>
     <p></p>
-    <input type="text" name="lastname" required autocomplete="family-name" id="lastname">
+    <input type="text" <?php if (!empty($_SESSION['lastname'])) echo "value='" . $_SESSION['lastname'] . "'"; ?> name="lastname" required autocomplete="family-name" id="lastname">
     <p></p>
     <label for="email">Email</label>
     <p></p>
-    <input type="email" name="email" required autocomplete="email" id="email">
+    <input type="email" <?php if (!empty($_SESSION['email'])) echo "value='" . $_SESSION['email'] . "'"; ?> name="email" required autocomplete="email" id="email">
     <p></p>
     <label for="password">Password</label>
     <p></p>
