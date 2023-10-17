@@ -1,3 +1,12 @@
+<?php
+
+if (!empty($_SESSION['userid'])) {
+    header("location: /");
+    exit();
+}
+
+?>
+
 <form action="signup" method="post">
     <label for="firstname">First name</label>
     <p></p>

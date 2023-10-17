@@ -1,3 +1,12 @@
+<?php
+
+if (!empty($_SESSION['userid'])) {
+    header("location: /");
+    exit();
+}
+
+?>
+
 <form action="/" method="post">
     <label for="email">Email</label>
     <p></p>
