@@ -22,20 +22,22 @@ if (empty($config['username'])) {
     exit();
 }
 
-// Connect to database
-try {
-    // Try to connect to database
-    $pdo = new PDO("mysql:host={$config['host']};", $config['username'], $config['password']);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// If dbtrue.txt doesn't exist create database
+if (!file_exists("../dbtrue.txt")) {
+    try {
+        // Try to connect to database
+        $pdo = new PDO("mysql:host={$config['host']};", $config['username'], $config['password']);
 
-    // Create database if doesn't exist
-    $pdo->exec(
-        "CREATE DATABASE IF NOT EXISTS teddycloud;
+        // Create database if doesn't exist
+        $pdo->exec(
+            "CREATE DATABASE IF NOT EXISTS teddycloud;
 
         USE teddycloud;
 
         CREATE TABLE IF NOT EXISTS users(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            firstname VARCHAR(255) NOT NULL,
+            lastname VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL UNIQUE,
             password VARCHAR(255) NOT NULL
         );
@@ -58,8 +60,18 @@ try {
             FOREIGN KEY (userid) REFERENCES users(id)
         );
         "
-    );
-    $pdo->exec("USE teddycloud;");
-} catch (PDOException $e) {
-    echo $e;
+        );
+        $pdo->exec("USE teddycloud;");
+    } catch (PDOException $e) {
+        echo $e;
+    } finally {
+        $createfile = fopen("../dbtrue.txt", "w");
+        if ($createfile) {
+            fwrite($createfile, "Database created successfully. Please delete this file to reinitialize the database creation");
+            fclose($createfile);
+        }
+        header("location: ./");
+    }
 }
+
+?>

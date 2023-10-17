@@ -1,7 +1,7 @@
 [
     {
-        "host": "YourHost Example: localhost",
-        "username": "YourSQLUsername",
-        "password": "YourSQLPassword"
+        "host": "localhost",
+        "username": "root",
+        "password": ""
     }
 ]
