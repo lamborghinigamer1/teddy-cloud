@@ -28,13 +28,17 @@ if (!file_exists("../dbtrue.txt")) {
         // Try to connect to database
         $pdo = new PDO("mysql:host={$config['host']};", $config['username'], $config['password']);
 
+        // Drop database for debugging purposes
+        // $pdo->exec("DROP DATABASE IF EXISTS teddycloud;");
+
         // Create database if doesn't exist
         $pdo->exec(
-            "CREATE DATABASE IF NOT EXISTS teddycloud;
+            "CREATE DATABASE teddycloud;
+            
 
         USE teddycloud;
 
-        CREATE TABLE IF NOT EXISTS users(
+        CREATE TABLE users(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             firstname VARCHAR(255) NOT NULL,
             lastname VARCHAR(255) NOT NULL,
@@ -42,7 +46,7 @@ if (!file_exists("../dbtrue.txt")) {
             password VARCHAR(255) NOT NULL
         );
 
-        CREATE TABLE IF NOT EXISTS files(
+        CREATE TABLE files(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             userid int NOT NULL,
             trash BOOLEAN NOT NULL,
@@ -52,7 +56,7 @@ if (!file_exists("../dbtrue.txt")) {
             FOREIGN KEY (userid) REFERENCES users(id)
         );
         
-        CREATE TABLE IF NOT EXISTS themes(
+        CREATE TABLE themes(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             userid INT NOT NULL,
             name VARCHAR(255) NOT NULL UNIQUE,
@@ -73,5 +77,3 @@ if (!file_exists("../dbtrue.txt")) {
         header("location: ./");
     }
 }
-
-?>

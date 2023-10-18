@@ -7,10 +7,10 @@ if (!empty($_SESSION['userid'])) {
 
 ?>
 
-<form action="/" method="post">
+<form action="login" method="post">
     <label for="email">Email</label>
     <p></p>
-    <input type="email" required name="email" id="email">
+    <input type="email" <?php if (!empty($_SESSION['email'])) echo "value='" . $_SESSION['email'] . "'"; ?> required name="email" id="email">
     <p></p>
     <label for="password">Password</label>
     <p></p>
@@ -19,3 +19,13 @@ if (!empty($_SESSION['userid'])) {
     <button type="submit">Confirm Login</button>
 </form>
 <a href="signup">Sign up instead</a>
+
+<?php
+
+if (!empty($_SESSION['errorslogin'])) {
+    foreach ($_SESSION['errors'] as $error) {
+        echo "<p>" . $error . "</p>";
+    }
+}
+
+?>

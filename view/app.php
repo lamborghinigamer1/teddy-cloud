@@ -23,6 +23,9 @@ require_once("../components/Database.class.php");
         case $_GET['page'] == "login":
             require_once("../components/Login.class.php");
             require_once("layout/login.php");
+            if(!empty($_POST)){
+                $login = new Login($_POST['email'], $_POST['password']);
+            }
             break;
         case $_GET['page'] == "signup":
             require_once("../components/Signup.class.php");

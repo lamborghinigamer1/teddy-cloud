@@ -31,3 +31,13 @@ if (!empty($_SESSION['userid'])) {
     <button type="submit">Confirm Sign up</button>
 </form>
 <a href="login">Login instead</a>
+
+<?php
+
+if (!empty($_SESSION['errorssignup'])) {
+    foreach ($_SESSION['errors'] as $error) {
+        echo "<p>" . $error . "</p>";
+    }
+}
+
+?>
