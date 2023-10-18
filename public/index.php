@@ -14,11 +14,7 @@ if (empty($_SESSION['userid']) && $_GET['page'] !== "login" && $_GET['page'] !==
     exit();
 }
 
-require_once("../components/Createdb.php");
+// Require html and database
 require_once("../helper.php");
-require_once("../components/Database.class.php");
-
-// require html
-require_once("../view/app.php");
 
 ?>
