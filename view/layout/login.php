@@ -10,7 +10,7 @@ if (!empty($_SESSION['userid'])) {
 <form action="login" method="post">
     <label for="email">Email</label>
     <p></p>
-    <input type="email" <?php if (!empty($_SESSION['email'])) echo "value='" . $_SESSION['email'] . "'"; ?> required name="email" id="email">
+    <input type="email" <?php if (!empty($_SESSION['email'])) echo "value='" . htmlspecialchars($_SESSION['email']) . "'"; ?> required name="email" id="email">
     <p></p>
     <label for="password">Password</label>
     <p></p>
@@ -24,7 +24,7 @@ if (!empty($_SESSION['userid'])) {
 
 if (!empty($_SESSION['errorslogin'])) {
     foreach ($_SESSION['errors'] as $error) {
-        echo "<p>" . $error . "</p>";
+        echo "<p>" . htmlspecialchars($error) . "</p>";
     }
 }
 
