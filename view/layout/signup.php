@@ -29,6 +29,7 @@ if (!empty($_SESSION['userid'])) {
     <input type="password" required name="confirmpass" id="confirmpass">
     <p></p>
     <button type="submit">Confirm Sign up</button>
+    <input type="text" <?php echo "value='" . $_SESSION["token"] . "'" ?> hidden name="token" id="token">
 </form>
 <a href="login">Login instead</a>
 

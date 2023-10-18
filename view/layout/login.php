@@ -17,6 +17,7 @@ if (!empty($_SESSION['userid'])) {
     <input type="password" required name="password" id="password">
     <p></p>
     <button type="submit">Confirm Login</button>
+    <input type="text" <?php echo "value='" . $_SESSION["token"] . "'" ?> hidden name="token" id="token">
 </form>
 <a href="signup">Sign up instead</a>
 
