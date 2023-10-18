@@ -27,7 +27,7 @@ class Login extends Database
             }
         } else {
             unset($_SESSION['email']);
-            header("location: /");
+            header("location: ./");
         }
     }
     private function emptyInput(): bool
@@ -65,5 +65,3 @@ class Login extends Database
         }
     }
 }
-
-?>

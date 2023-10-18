@@ -4,7 +4,7 @@
 session_start();
 
 if (empty($_SESSION['userid']) && $_GET['page'] !== "login" && $_GET['page'] !== "signup" && $_GET['page'] !== "logout") {
-    header("location: /login");
+    header("location:" . $_SERVER['REQUEST_URI'] . "login");
     exit();
 }
 

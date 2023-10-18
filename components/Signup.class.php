@@ -44,12 +44,12 @@ class Signup extends Database
 
     if (!empty($errormessages)) {
         $_SESSION['errors'] = $errormessages;
-        header("location: /signup");
+        header("location:" . $_SERVER['REQUEST_URI'] . "signup");
         exit();
     } else {
         $this->encryptPassword();
         $this->insertUser();
-        header("location: /logout");
+        header("location: ./logout");
         exit();
     }
 }

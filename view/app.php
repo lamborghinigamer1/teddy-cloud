@@ -37,6 +37,9 @@ require_once("../components/Database.class.php");
         case $_GET['page'] == "logout":
             require_once('layout/logout.php');
             break;
+        default:
+        require_once('layout/navbar.php');
+        break;
     }
     ?>
 </body>
