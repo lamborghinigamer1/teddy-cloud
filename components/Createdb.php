@@ -28,8 +28,12 @@ if (!file_exists("../dbtrue.txt")) {
         // Try to connect to database
         $pdo = new PDO("mysql:host={$config['host']};", $config['username'], $config['password']);
 
+        // Remove upload folder for debugging purposes
+        rmdir("uploads");
         // Drop database for debugging purposes
-        // $pdo->exec("DROP DATABASE IF EXISTS teddycloud;");
+        $pdo->exec("DROP DATABASE IF EXISTS teddycloud;");
+
+        mkdir("uploads");
 
         // Create database if doesn't exist
         $pdo->exec(
@@ -53,6 +57,7 @@ if (!file_exists("../dbtrue.txt")) {
             filename varchar(255) NOT NULL,
             filesize INT NOT NULL,
             filelocation varchar(255) NOT NULL,
+            filetype varchar(255) NOT NULL,
             FOREIGN KEY (userid) REFERENCES users(id)
         );
         

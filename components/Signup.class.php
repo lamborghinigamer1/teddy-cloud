@@ -9,50 +9,50 @@ class Signup extends Database
     protected string $confirmpassword;
 
     public function __construct(string $firstname, string $lastname, string $email, string $password, string $confirmpassword)
-{
-    parent::__construct();
-    unset($_SESSION['errorssignup']);
-    unset($_SESSION['errorslogin']);
-    $this->firstname = $firstname;
-    $this->lastname = $lastname;
-    $this->email = $email;
-    $this->password = $password;
-    $this->confirmpassword = $confirmpassword;
+    {
+        parent::__construct();
+        unset($_SESSION['errorssignup']);
+        unset($_SESSION['errorslogin']);
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
+        $this->email = $email;
+        $this->password = $password;
+        $this->confirmpassword = $confirmpassword;
 
-    // Check for any empty input
-    $_SESSION['firstname'] = $this->firstname;
-    $_SESSION['lastname'] = $this->lastname;
-    $_SESSION['email'] = $this->email;
+        // Check for any empty input
+        $_SESSION['firstname'] = $this->firstname;
+        $_SESSION['lastname'] = $this->lastname;
+        $_SESSION['email'] = $this->email;
 
-    $errormessages = [];
+        $errormessages = [];
 
-    if (!$this->emptyInput()) {
-        array_push($errormessages, "You did not fill in all information");
-    }
-    if (!$this->invalidEmail()) {
-        array_push($errormessages, "Email is invalid");
-    }
-    if (!$this->userExists($this->email)) {
-        array_push($errormessages, "Email already exists");
-    }
-    if (!$this->passwordRequirement()) {
-        array_push($errormessages, "Your password must be at least 8 characters long");
-    }
-    if (!$this->confirmPassword()) {
-        array_push($errormessages, "Your password does not match");
-    }
+        if (!$this->emptyInput()) {
+            array_push($errormessages, "You did not fill in all information");
+        }
+        if (!$this->invalidEmail()) {
+            array_push($errormessages, "Email is invalid");
+        }
+        if (!$this->userExists($this->email)) {
+            array_push($errormessages, "Email already exists");
+        }
+        if (!$this->passwordRequirement()) {
+            array_push($errormessages, "Your password must be at least 8 characters long");
+        }
+        if (!$this->confirmPassword()) {
+            array_push($errormessages, "Your password does not match");
+        }
 
-    if (!empty($errormessages)) {
-        $_SESSION['errors'] = $errormessages;
-        header("location:" . $_SERVER['REQUEST_URI'] . "signup");
-        exit();
-    } else {
-        $this->encryptPassword();
-        $this->insertUser();
-        header("location: ./logout");
-        exit();
+        if (!empty($errormessages)) {
+            $_SESSION['errorssignup'] = $errormessages;
+            header("location: {$_SERVER['REQUEST_URI']}");
+            exit();
+        } else {
+            $this->encryptPassword();
+            $this->insertUser();
+            header("location: {$_SERVER['PHP_SELF']}/logout");
+            exit();
+        }
     }
-}
 
 
     private function emptyInput(): bool

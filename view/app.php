@@ -48,7 +48,11 @@ require_once("../components/Database.class.php");
             require_once('layout/logout.php');
             break;
         default:
+            require_once('../components/Files.class.php');
             require_once('layout/navbar.php');
+            if (!empty($_FILES)) {
+                $fileupload = new Files();
+            }
             break;
     }
     ?>

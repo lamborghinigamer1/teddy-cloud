@@ -27,7 +27,7 @@ class Login extends Database
             }
         } else {
             unset($_SESSION['email']);
-            header("location: ./");
+            header("location: {$_SERVER['PHP_SELF']}");
         }
     }
     private function emptyInput(): bool
