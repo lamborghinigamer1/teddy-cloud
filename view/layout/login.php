@@ -1,7 +1,7 @@
 <?php
 
 if (!empty($_SESSION['userid'])) {
-    header("location: /");
+    header("location: ./");
     exit();
 }
 
